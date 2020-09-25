@@ -6,11 +6,18 @@
 
     <ItemGroup>
       <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.8" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.8" />
     </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\Trackerfy.Application\Trackerfy.Application.csproj" />
       <ProjectReference Include="..\Trackerfy.Domain\Trackerfy.Domain.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Update="trackerfy.db">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
     </ItemGroup>
 
 </Project>
