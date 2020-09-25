@@ -8,5 +8,15 @@
       <Folder Include="Controllers" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\Trackerfy.Application\Trackerfy.Application.csproj" />
+      <ProjectReference Include="..\Trackerfy.Infrastructure\Trackerfy.Infrastructure.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Swashbuckle" Version="5.6.0" />
+      <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+    </ItemGroup>
+
 
 </Project>
