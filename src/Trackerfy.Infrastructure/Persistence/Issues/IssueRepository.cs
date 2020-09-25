@@ -5,7 +5,7 @@ using Trackerfy.Domain.Entities;
 
 namespace Trackerfy.Infrastructure.Persistence.Issues
 {
-    public class IssueRepository: IIssueRepository
+    public class IssueRepository : IIssueRepository
     {
         private readonly Context _context;
 
@@ -13,6 +13,7 @@ namespace Trackerfy.Infrastructure.Persistence.Issues
         {
             _context = context;
         }
+
         public void Add(Issue issue)
         {
             _context.Set<Issue>().Add(issue);
@@ -21,6 +22,11 @@ namespace Trackerfy.Infrastructure.Persistence.Issues
         public async Task<int> Commit(CancellationToken cancellationToken)
         {
             return await _context.SaveChangesAsync(cancellationToken);
+        }
+
+        public async Task<Issue> findByIdAsync(int issueId)
+        {
+            return await _context.Set<Issue>().FindAsync(issueId);
         }
     }
 }

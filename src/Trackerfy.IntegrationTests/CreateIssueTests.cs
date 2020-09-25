@@ -1,8 +1,8 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using Microsoft.EntityFrameworkCore;
+using Moq;
 using Shouldly;
 using Trackerfy.Application;
 using Trackerfy.Application.Interfaces;
@@ -15,44 +15,47 @@ namespace Trackerfy.IntegrationTests
 {
     public class CreateIssueTests
     {
+        private readonly Context _context;
+        private readonly CreateIssueCommandHandler _handler;
+        private readonly IIssueRepository _issueRepository;
+        private readonly Mock<ICurrentUserService> _currentUserService;
+        private readonly string _currentUserId;
+
+        public CreateIssueTests()
+        {
+            _currentUserId = "1a";
+            _context = ContextFactory.CreateInMemoryContext();
+            _context.Set<IssueType>().Add(new IssueType("Bug"));
+            _context.SaveChanges();
+
+            _issueRepository = new IssueRepository(_context);
+            _currentUserService = new Mock<ICurrentUserService>();
+            _currentUserService.Setup(x => x.GetUserId()).Returns(_currentUserId);
+            _handler = new CreateIssueCommandHandler(_currentUserService.Object, _issueRepository);
+        }
+
         [Fact]
         public async void CreateIssue_ShouldBe_Persisted()
         {
-            var context = CreateInMemoryContext();
-            await context.Set<IssueType>().AddAsync(new IssueType("Bug"));
-            await context.SaveChangesAsync();
-
-            IIssueRepository issueRepository = new IssueRepository(context);
-            ICurrentUserService currentUser = new CurrentUserStub();
-            var issueType = context.Set<IssueType>().First();
-
-            var handler = new CreateIssueCommandHandler(currentUser, issueRepository);
+            var issueType = _context.Set<IssueType>().First();
             const string summary = "Summary 1";
-            var result = await handler.Handle(new CreateIssueCommand(summary, issueType.Id), CancellationToken.None);
+
+            var result = await _handler.Handle(new CreateIssueCommand(summary, issueType.Id), CancellationToken.None);
 
             result.ShouldNotBeNull();
-            var issue = context.Set<Issue>().Find(result);
-            issue.CreatedBy.ShouldBe(currentUser.GetUserId());
         }
 
-        private static Context CreateInMemoryContext()
+        [Fact]
+        public async void CreateIssue_ShouldBeHas_requiredData()
         {
-            var options = new DbContextOptionsBuilder<Context>()
-                .UseInMemoryDatabase(Guid.NewGuid().ToString())
-                .Options;
+            var issueType = _context.Set<IssueType>().First();
+            const string summary = "Summary 1";
 
-            var context = new Context(options);
-            context.Database.EnsureCreated();
+            var result = await _handler.Handle(new CreateIssueCommand(summary, issueType.Id), CancellationToken.None);
 
-            return context;
+            var issue = await _issueRepository.findByIdAsync(result);
+            issue.Summary.ShouldNotBeEmpty();
+            issue.IssueTypeId.ShouldBe(issueType.Id);
         }
-    }
-}
-
-public class CurrentUserStub : ICurrentUserService
-{
-    public string GetUserId()
-    {
-        return "434";
     }
 }

@@ -8,5 +8,6 @@ namespace Trackerfy.Application.Interfaces
     {
         void Add(Issue issue);
         Task<int> Commit(CancellationToken cancellationToken);
+        Task<Issue> findByIdAsync(int issueId);
     }
 }

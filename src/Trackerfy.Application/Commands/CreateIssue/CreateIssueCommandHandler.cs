@@ -19,8 +19,8 @@ namespace Trackerfy.Application
         public async Task<int> Handle(CreateIssueCommand request, CancellationToken cancellationToken)
         {
             var userId = _currentUserService.GetUserId();
-            var issue = new Issue(request.Summary, request.IssueTypeId, userId);
 
+            var issue = new Issue(request.Summary, request.IssueTypeId, userId);
             _issueRepository.Add(issue);
 
             await _issueRepository.Commit(cancellationToken);
