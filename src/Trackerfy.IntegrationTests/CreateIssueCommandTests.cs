@@ -3,6 +3,7 @@ using System.Threading;
 using Moq;
 using Shouldly;
 using Trackerfy.Application;
+using Trackerfy.Application.Commands.CreateIssue;
 using Trackerfy.Application.Interfaces;
 using Trackerfy.Domain;
 using Trackerfy.Infrastructure.Persistence.Issues;
