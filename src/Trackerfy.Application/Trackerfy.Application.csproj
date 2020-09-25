@@ -4,4 +4,8 @@
         <TargetFramework>netcoreapp3.1</TargetFramework>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\Trackerfy.Domain\Trackerfy.Domain.csproj" />
+    </ItemGroup>
+
 </Project>

@@ -1,7 +1,12 @@
+using System.Threading;
+using System.Threading.Tasks;
+using Trackerfy.Domain.Entities;
+
 namespace Trackerfy.Application.Interfaces
 {
-    public class IIssueRepository
+    public interface IIssueRepository
     {
-
+        void Add(Issue issue);
+        Task<int> Commit(CancellationToken cancellationToken);
     }
 }

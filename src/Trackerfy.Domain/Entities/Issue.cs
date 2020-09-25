@@ -9,10 +9,11 @@ namespace Trackerfy.Domain.Entities
         {
         }
 
-        public Issue(string summary, int issueTypeId)
+        public Issue(string summary, int issueTypeId, string userId)
         {
             Summary = summary;
             IssueTypeId = issueTypeId;
+            CreatedBy = userId;
         }
 
         public int Id { get; private set; }
