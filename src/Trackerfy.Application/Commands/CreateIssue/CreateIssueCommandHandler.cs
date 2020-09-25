@@ -1,11 +1,12 @@
 using System.Threading;
 using System.Threading.Tasks;
+using MediatR;
 using Trackerfy.Application.Interfaces;
 using Trackerfy.Domain.Entities;
 
-namespace Trackerfy.Application
+namespace Trackerfy.Application.Commands.CreateIssue
 {
-    public class CreateIssueCommandHandler
+    public class CreateIssueCommandHandler: IRequestHandler<CreateIssueCommand, int>
     {
         private readonly ICurrentUserService _currentUserService;
         private readonly IIssueRepository _issueRepository;

@@ -1,6 +1,8 @@
-namespace Trackerfy.Application
+using MediatR;
+
+namespace Trackerfy.Application.Commands.CreateIssue
 {
-    public class CreateIssueCommand
+    public class CreateIssueCommand: IRequest<int>
     {
         public CreateIssueCommand(string summary, int issueTypeId)
         {
