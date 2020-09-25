@@ -14,6 +14,7 @@ namespace Trackerfy.Domain.Entities
             Summary = summary;
             IssueTypeId = issueTypeId;
             CreatedBy = userId;
+            Created = SystemClock.Now;
         }
 
         public int Id { get; private set; }

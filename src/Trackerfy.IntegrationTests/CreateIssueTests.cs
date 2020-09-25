@@ -1,11 +1,11 @@
 using System;
 using System.Linq;
 using System.Threading;
-using Microsoft.EntityFrameworkCore;
 using Moq;
 using Shouldly;
 using Trackerfy.Application;
 using Trackerfy.Application.Interfaces;
+using Trackerfy.Domain;
 using Trackerfy.Infrastructure;
 using Trackerfy.Infrastructure.Persistence.Issues;
 using Trackerfy.Domain.Entities;
@@ -46,7 +46,7 @@ namespace Trackerfy.IntegrationTests
         }
 
         [Fact]
-        public async void CreateIssue_ShouldBeHas_requiredData()
+        public async void CreateIssue_ShouldHas_requiredData()
         {
             var issueType = _context.Set<IssueType>().First();
             const string summary = "Summary 1";
@@ -56,6 +56,21 @@ namespace Trackerfy.IntegrationTests
             var issue = await _issueRepository.findByIdAsync(result);
             issue.Summary.ShouldNotBeEmpty();
             issue.IssueTypeId.ShouldBe(issueType.Id);
+        }
+
+        [Fact]
+        public async void CreateIssue_ShouldHas_AuditCreationData()
+        {
+            var issueType = _context.Set<IssueType>().First();
+            const string summary = "Summary 1";
+            var creationDate = DateTime.Now;
+            SystemClock.Set(creationDate);
+
+            var result = await _handler.Handle(new CreateIssueCommand(summary, issueType.Id), CancellationToken.None);
+
+            var issue = await _issueRepository.findByIdAsync(result);
+            issue.CreatedBy.ShouldBe(_currentUserId);
+            issue.Created.ShouldBe(creationDate);
         }
     }
 }
