@@ -1,5 +1,6 @@
 using System.Threading;
 using System.Threading.Tasks;
+using Trackerfy.Application.Common.Exceptions;
 using Trackerfy.Application.Interfaces;
 using Trackerfy.Domain.Entities;
 
@@ -26,7 +27,12 @@ namespace Trackerfy.Infrastructure.Persistence.Issues
 
         public async Task<Issue> findByIdAsync(int issueId)
         {
-            return await _context.Set<Issue>().FindAsync(issueId);
+            var issue = await _context.Set<Issue>().FindAsync(issueId);
+
+            if(issue == null)
+                throw new NotFoundException(nameof(Issue), issueId);
+
+            return issue;
         }
     }
 }
