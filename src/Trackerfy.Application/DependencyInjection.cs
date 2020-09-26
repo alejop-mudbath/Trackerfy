@@ -2,6 +2,7 @@
 using AutoMapper;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
+using Trackerfy.Application.Common.Behaviors;
 
 namespace Trackerfy.Application
 {
@@ -11,7 +12,7 @@ namespace Trackerfy.Application
         {
             services.AddMediatR(Assembly.GetExecutingAssembly());
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
-
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(RequestValidationBehavior<,>));
             return services;
         }
     }

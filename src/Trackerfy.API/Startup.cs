@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FluentValidation;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -11,7 +12,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Trackerfy.API.Common;
 using Trackerfy.Application;
+using Trackerfy.Application.Interfaces;
 using Trackerfy.Infrastructure;
 
 namespace Trackerfy.API
@@ -33,6 +36,8 @@ namespace Trackerfy.API
 
             services.AddControllers();
 
+            services.AddValidatorsFromAssembly(typeof(IContext).Assembly);
+
             services.AddScoped<ICurrentUserService, CurrentUserService>();
             services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo { Title = "API" }); });
         }
@@ -52,6 +57,7 @@ namespace Trackerfy.API
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseCustomExceptionHandler();
             app.UseHttpsRedirection();
 
             app.UseRouting();
