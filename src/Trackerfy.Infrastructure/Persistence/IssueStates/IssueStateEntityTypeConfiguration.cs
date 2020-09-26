@@ -12,6 +12,16 @@ namespace Trackerfy.Infrastructure.Configurations
 
             builder.Property(e => e.Description)
                 .IsRequired();
+
+            SeedData(builder);
+        }
+
+        private static void SeedData(EntityTypeBuilder<IssueState> builder)
+        {
+            builder.HasData(
+                new IssueState("To Do") {Id = 1},
+                new IssueState("In Progress") {Id = 2},
+                new IssueState("Completed") {Id = 3});
         }
     }
 }

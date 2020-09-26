@@ -26,6 +26,8 @@ namespace Trackerfy.Infrastructure.Configurations
             builder.HasOne(e => e.IssueType)
                 .WithMany()
                 .HasForeignKey(e => e.IssueTypeId);
+
+
         }
     }
 }
