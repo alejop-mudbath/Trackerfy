@@ -2,7 +2,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 
-namespace Trackerfy.Infrastructure
+namespace Trackerfy.Application.Interfaces
 {
     public interface IContext
     {
