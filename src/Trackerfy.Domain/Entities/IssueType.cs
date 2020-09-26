@@ -7,7 +7,7 @@ namespace Trackerfy.Domain.Entities
             Description = description;
         }
 
-        public int Id { get; private set; }
+        public int Id { get; set; }
         public string Description { get; private set; }
     }
 }

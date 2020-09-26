@@ -1,6 +1,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Trackerfy.Infrastructure;
+using Trackerfy.Infrastructure.Persistence;
 
 namespace Trackerfy.IntegrationTests
 {

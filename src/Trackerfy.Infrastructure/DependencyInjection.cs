@@ -23,6 +23,7 @@ namespace Trackerfy.Infrastructure
             services.AddScoped<IContext>(provider => provider.GetService<Context>());
             services.AddScoped<IIssueRepository, IssueRepository>();
             services.AddScoped<IIssueTypeRepository, IssueTypeRepository>();
+            services.AddScoped<IIssueStateRepository, IssueStateRepository>();
 
             return services;
         }

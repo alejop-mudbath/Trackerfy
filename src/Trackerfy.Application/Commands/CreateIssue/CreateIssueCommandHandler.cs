@@ -10,18 +10,23 @@ namespace Trackerfy.Application.Commands.CreateIssue
     {
         private readonly ICurrentUserService _currentUserService;
         private readonly IIssueRepository _issueRepository;
+        private readonly IIssueStateRepository _issueStateRepository;
 
-        public CreateIssueCommandHandler(ICurrentUserService currentUserServiceService, IIssueRepository issueRepository)
+        public CreateIssueCommandHandler(ICurrentUserService currentUserServiceService,
+            IIssueRepository issueRepository,
+            IIssueStateRepository issueStateRepository)
         {
             _currentUserService = currentUserServiceService;
             _issueRepository = issueRepository;
+            _issueStateRepository = issueStateRepository;
         }
 
         public async Task<int> Handle(CreateIssueCommand request, CancellationToken cancellationToken)
         {
             var userId = _currentUserService.GetUserId();
+            var defaultState = await _issueStateRepository.GetDefaultState();
 
-            var issue = new Issue(request.Summary, request.IssueTypeId, userId);
+            var issue = new Issue(request.Summary, request.IssueTypeId, userId, defaultState);
             _issueRepository.Add(issue);
 
             await _issueRepository.Commit(cancellationToken);
