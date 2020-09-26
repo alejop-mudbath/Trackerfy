@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Trackerfy.Domain.Entities;
 
-namespace Trackerfy.Infrastructure.Configurations
+namespace Trackerfy.Infrastructure.Persistence.Issues
 {
     public class IssueEntityTypeConfiguration: IEntityTypeConfiguration<Issue>
     {

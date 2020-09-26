@@ -1,5 +1,8 @@
 using Microsoft.EntityFrameworkCore;
-using Trackerfy.Infrastructure.Configurations;
+using Trackerfy.Application.Interfaces;
+using Trackerfy.Infrastructure.Persistence.Issues;
+using Trackerfy.Infrastructure.Persistence.IssueStates;
+using Trackerfy.Infrastructure.Persistence.IssueTypes;
 
 namespace Trackerfy.Infrastructure.Persistence
 {
