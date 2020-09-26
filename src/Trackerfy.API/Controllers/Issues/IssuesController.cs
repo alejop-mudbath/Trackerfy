@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Trackerfy.Application.Commands.CreateIssue;
 using Trackerfy.Application.Queries.GetAllIssues;
 
-namespace Trackerfy.API.Controllers
+namespace Trackerfy.API.Controllers.Issues
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -25,6 +25,7 @@ namespace Trackerfy.API.Controllers
             var command = new CreateIssueCommand(request.Summary, request.IssueTypeId);
             return await _mediator.Send(command, cancellationToken);
         }
+        
         [HttpGet]
         public async Task<ActionResult<List<IssueDTO>>> Get(CancellationToken cancellationToken)
         {

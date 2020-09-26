@@ -1,4 +1,4 @@
-namespace Trackerfy.API.Controllers
+namespace Trackerfy.API.Controllers.Issues
 {
     public class CreateIssueRequest
     {

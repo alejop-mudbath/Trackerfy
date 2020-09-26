@@ -33,5 +33,12 @@ namespace Trackerfy.Domain.Entities
         public string CreatedBy { get; private set; }
 
         public DateTime Created { get; private set; }
+        public string Assignee { get; private set; }
+
+        public void AssignAssignee(string requestAssigneeUserId)
+        {
+            Assignee = requestAssigneeUserId;
+        }
+
     }
 }
