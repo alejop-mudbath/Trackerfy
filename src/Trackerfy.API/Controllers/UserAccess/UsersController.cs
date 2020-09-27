@@ -4,6 +4,8 @@ using Trackerfy.Application.Interfaces;
 
 namespace Trackerfy.API.Controllers.UserAccess
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class UsersController : Controller
     {
         private readonly IUserService _userService;
@@ -17,9 +19,9 @@ namespace Trackerfy.API.Controllers.UserAccess
         [Route("register")]
         public async Task<IActionResult> Register([FromBody] RegisterUserRequest request)
         {
-            await _userService.CreateUserAsync(request.Username, request.Password, request.Name);
+            var userId = await _userService.CreateUserAsync(request.Name, request.Email, request.Password);
 
-            return Ok();
+            return Ok(userId);
         }
     }
 }

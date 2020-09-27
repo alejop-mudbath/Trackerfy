@@ -63,7 +63,7 @@ namespace Trackerfy.API
             app.UseRouting();
 
             app.UseAuthorization();
-
+            app.UseCors("AllowAll");
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
 
 

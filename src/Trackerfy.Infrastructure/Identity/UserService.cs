@@ -23,19 +23,19 @@ namespace Trackerfy.Infrastructure.Identity
             return user.UserName;
         }
 
-        public async Task<string> CreateUserAsync(string userName, string password, string name)
+        public async Task<string> CreateUserAsync(string name, string email, string password)
         {
             var user = new ApplicationUser
             {
-                UserName = userName,
-                Email = userName,
+                UserName = email,
+                Email = email,
                 Name = name
             };
 
             var result = await _userManager.CreateAsync(user, password);
 
             if (!result.Succeeded)
-                throw new Exception("Create error");
+                throw new Exception("Error: " + result.Errors.First().Description);
 
             return user.Id;
         }
