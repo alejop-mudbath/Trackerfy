@@ -19,9 +19,9 @@ namespace Trackerfy.API.Controllers.UserAccess
         [Route("register")]
         public async Task<IActionResult> Register([FromBody] RegisterUserRequest request)
         {
-            var userId = await _userService.CreateUserAsync(request.Name, request.Email, request.Password);
+             await _userService.CreateUserAsync(request.Name, request.Email, request.Password);
 
-            return Ok(userId);
+            return Ok();
         }
     }
 }
