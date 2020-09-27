@@ -1,8 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Trackerfy.Application.Interfaces;
 using Trackerfy.Domain.Entities;
+using Trackerfy.Infrastructure.Identity;
 using Trackerfy.Infrastructure.Persistence;
 using Trackerfy.Infrastructure.Persistence.Issues;
 using Trackerfy.Infrastructure.Persistence.IssueStates;
@@ -24,6 +26,18 @@ namespace Trackerfy.Infrastructure
             services.AddScoped<IIssueRepository, IssueRepository>();
             services.AddScoped<IIssueTypeRepository, IssueTypeRepository>();
             services.AddScoped<IIssueStateRepository, IssueStateRepository>();
+
+
+            services.AddDefaultIdentity<ApplicationUser>()
+                .AddEntityFrameworkStores<Context>();
+
+            services.AddIdentityServer()
+                .AddApiAuthorization<ApplicationUser, Context>();
+
+            services.AddAuthentication()
+                .AddIdentityServerJwt();
+
+            services.AddTransient<IUserService, UserService>();
 
             return services;
         }
