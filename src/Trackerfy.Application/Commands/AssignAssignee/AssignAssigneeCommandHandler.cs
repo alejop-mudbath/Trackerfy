@@ -16,7 +16,7 @@ namespace Trackerfy.Application.Commands.AssignAssignee
 
         public async Task<int> Handle(AssignAssigneeCommand request, CancellationToken cancellationToken)
         {
-            var issue = await _issueRepository.findByIdAsync(request.IssuedId);
+            var issue = await _issueRepository.findByIdAsync(request.IssueId);
 
             issue.AssignAssignee(request.AssigneeUserId);
 

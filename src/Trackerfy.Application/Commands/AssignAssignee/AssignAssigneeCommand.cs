@@ -4,14 +4,14 @@ namespace Trackerfy.Application.Commands.AssignAssignee
 {
     public class AssignAssigneeCommand : IRequest<int>
     {
-        public AssignAssigneeCommand(int issuedId, string assigneeUserId)
+        public AssignAssigneeCommand(int issueId, string assigneeUserId)
         {
-            IssuedId = issuedId;
+            IssueId = issueId;
             AssigneeUserId = assigneeUserId;
         }
 
         public string AssigneeUserId { get; }
 
-        public int IssuedId { get; }
+        public int IssueId { get; }
     }
 }

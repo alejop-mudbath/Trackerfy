@@ -9,7 +9,7 @@ namespace Trackerfy.Application.Commands.AssignAssignee
             RuleFor(v => v.AssigneeUserId)
                 .NotEmpty().WithMessage("Assignee Id required.");
 
-            RuleFor(v => v.IssuedId)
+            RuleFor(v => v.IssueId)
                 .NotEmpty().WithMessage("Issue Id is required.");
         }
     }
