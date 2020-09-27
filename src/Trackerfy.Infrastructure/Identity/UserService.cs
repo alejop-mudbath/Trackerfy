@@ -35,7 +35,7 @@ namespace Trackerfy.Infrastructure.Identity
             var result = await _userManager.CreateAsync(user, password);
 
             if (!result.Succeeded)
-                throw new Exception("Error: " + result.Errors.First().Description);
+                throw new Exception(result.Errors.First().Description);
 
             return user.Id;
         }
