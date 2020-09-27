@@ -3,7 +3,7 @@ using System;
 
 namespace Trackerfy.Domain.Entities
 {
-    public class Issue
+    public class Issue: AuditableEntity
     {
         private Issue()
         {
@@ -30,9 +30,6 @@ namespace Trackerfy.Domain.Entities
 
         public virtual IssueState IssueState { get; private set; }
 
-        public string CreatedBy { get; private set; }
-
-        public DateTime Created { get; private set; }
         public string Assignee { get; private set; }
 
         public void AssignAssignee(string requestAssigneeUserId)
@@ -40,5 +37,9 @@ namespace Trackerfy.Domain.Entities
             Assignee = requestAssigneeUserId;
         }
 
+        public void UpdateState(in int issueStateId)
+        {
+            IssueStateId = issueStateId;
+        }
     }
 }

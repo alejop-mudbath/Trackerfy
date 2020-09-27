@@ -1,6 +1,8 @@
 using System.Threading;
 using System.Threading.Tasks;
+using Moq;
 using Shouldly;
+using Trackerfy.Application;
 using Trackerfy.Application.Commands.AssignAssignee;
 using Trackerfy.Application.Commands.CreateIssue;
 using Trackerfy.Application.Interfaces;
@@ -16,7 +18,9 @@ namespace Trackerfy.IntegrationTests
 
         public AssignAssigneeCommandTests()
         {
-            _issueRepository = new IssueRepository(ContextFactory.CreateInMemoryContext());
+            var currentUserService = new Mock<ICurrentUserService>();
+            currentUserService.Setup(x => x.GetUserId()).Returns("12");
+            _issueRepository = new IssueRepository(ContextFactory.CreateInMemoryContext(currentUserService.Object));
         }
 
         [Fact]

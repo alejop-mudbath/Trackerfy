@@ -27,14 +27,15 @@ namespace Trackerfy.IntegrationTests
         public CreateIssueCommandTests()
         {
             _currentUserId = "1a";
-            var context = ContextFactory.CreateInMemoryContext();
+            var currentUserService = new Mock<ICurrentUserService>();
+            currentUserService.Setup(x => x.GetUserId()).Returns(_currentUserId);
+
+            var context = ContextFactory.CreateInMemoryContext(currentUserService.Object);
             _issueTypeRepository = new IssueTypeRepository(context);
             _issueRepository = new IssueRepository(context);
             _issueStateRepository = new IssueStateRepository(context);
             SeedDataTest();
 
-            var currentUserService = new Mock<ICurrentUserService>();
-            currentUserService.Setup(x => x.GetUserId()).Returns(_currentUserId);
 
             _handler = new CreateIssueCommandHandler(currentUserService.Object, _issueRepository, _issueStateRepository);
             _request = new CreateIssueCommand("Summary 1", _issueType.Id);
