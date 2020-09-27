@@ -4,6 +4,8 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {ShellModule} from "./shell/shell.module";
+import {HttpClientModule} from "@angular/common/http";
+import {UsersModule} from "./users/users.module";
 
 @NgModule({
   declarations: [
@@ -13,6 +15,8 @@ import {ShellModule} from "./shell/shell.module";
     BrowserModule,
     AppRoutingModule,
     ShellModule,
+    HttpClientModule,
+    UsersModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
