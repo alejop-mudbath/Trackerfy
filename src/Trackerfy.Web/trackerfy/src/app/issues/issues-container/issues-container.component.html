@@ -3,7 +3,7 @@
     <div class="col-md-3" style="">
     </div>
     <div class="text-left col-md-3 col-3" style="">
-      <app-create-issue (issueCreateEvent)="loadIssues()"></app-create-issue>
+      <app-create-issue></app-create-issue>
     </div>
     <div class="col-md-3 text-center col-4" style="">
       <div class="btn-group btn-group-toggle" data-toggle="buttons">
@@ -28,7 +28,7 @@
 
     </div>
     <div class="col-md-9 col-12">
-      <app-issues-list></app-issues-list>
+      <router-outlet></router-outlet>
     </div>
   </div>
 </div>

@@ -8,10 +8,11 @@ import {CreateIssueComponent} from './create-issue/create-issue.component';
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {IssueTypesModule} from "../issue-types/issue-types.module";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {IssueDetailsComponent} from "./issues-container/issue-details/issue-details.component";
 
 
 @NgModule({
-  declarations: [IssuesContainerComponent, IssuesListComponent, CreateIssueComponent,],
+  declarations: [IssuesContainerComponent, IssuesListComponent, CreateIssueComponent, IssueDetailsComponent,],
   imports: [
     CommonModule,
     IssuesRoutingModule,

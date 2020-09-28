@@ -22,16 +22,15 @@
           <div class="col-sm-9">
             <div class="form-group">
               <label for="summary">Summary</label>
-              <input type="text" formControlName="summary"  class="form-control" id="summary" name="summary"
+              <input type="text" formControlName="summary" class="form-control" id="summary" name="summary"
                      placeholder="Write something...">
             </div>
           </div>
         </div>
       </div>
       <div class="modal-footer">
-        <button type="submit" class="btn btn-primary" [disabled]="!newIssueForm.valid" >Create
-        </button>
-        <button class="btn btn-default" (click)="modal.dismiss('Cross click')">Close
+        <button type="submit" class="btn btn-primary" [disabled]="!newIssueForm.valid"
+                (click)="createIssue();modal.dismiss('Cross click')">Create
         </button>
       </div>
     </form>

@@ -12,10 +12,14 @@ export class IssuesService {
   constructor(private http: HttpClient) { }
 
   getAllIssues() {
-    return this.http.get<IssueInterface[]>(this.authApiURI + '/issues')
+    return this.http.get<IssueInterface[]>(`${this.authApiURI}/issues`)
   }
 
   create(createIssue: CreateIssueModel) {
-    return this.http.post(this.authApiURI + '/issues', createIssue)
+    return this.http.post(`${this.authApiURI}/issues`, createIssue)
+  }
+
+  getIssueById(issueId: number) {
+    return this.http.get<IssueInterface>(`${this.authApiURI}/issues/${issueId}`)
   }
 }

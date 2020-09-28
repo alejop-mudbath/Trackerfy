@@ -5,7 +5,8 @@ import {IssueTypeInterface} from "../../issue-types/issue-type.interface";
 import {IssuesService} from "../issues.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ToastrService} from "ngx-toastr";
-import { EventEmitter } from '@angular/core';
+import {EventEmitter} from '@angular/core';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-create-issue',
@@ -21,20 +22,22 @@ export class CreateIssueComponent implements OnInit {
     summary: new FormControl('', Validators.required),
   })
 
-  @Output() issueCreateEvent = new EventEmitter();
-  ngbModalRef: Promise<void>;
 
   constructor(private modalService: NgbModal,
               private issueTypesService: IssueTypesService,
               private issuesService: IssuesService,
-              private toastr: ToastrService,) {
+              private toastr: ToastrService,
+              private router: Router,) {
 
   }
 
   open(content) {
     this.getIssueTypes();
 
-    this.ngbModalRef =  this.modalService.open(content, {ariaLabelledBy: 'Create new issue', size: "lg"}).result.then((result) => {
+    this.modalService.open(content, {
+      ariaLabelledBy: 'Create new issue',
+      size: "lg"
+    }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${CreateIssueComponent.getDismissReason(reason)}`;
@@ -62,11 +65,16 @@ export class CreateIssueComponent implements OnInit {
 
   createIssue() {
     if (this.newIssueForm.valid) {
-      this.issuesService.create(this.newIssueForm.getRawValue()).subscribe(()=>{
+      this.issuesService.create(this.newIssueForm.getRawValue()).subscribe((result) => {
         this.newIssueForm.reset();
         this.toastr.success("Issue was created successfully")
-        this.issueCreateEvent.emit(null);
+        this.goIssueDetail(result);
       })
     }
   }
+
+  goIssueDetail(issueId) {
+    this.router.navigate(["/issues/issue-detail/", issueId]);
+  }
+
 }
