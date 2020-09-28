@@ -1,6 +1,6 @@
-﻿﻿using System;
+using System;
 
- namespace Trackerfy.Application.Common.Exceptions
+namespace Trackerfy.Application.Common.Exceptions
 {
     public class NotFoundException : Exception
     {
