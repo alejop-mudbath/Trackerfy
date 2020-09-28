@@ -1,0 +1,31 @@
+<ul class="list-group">
+  <li *ngFor="let issue of issues; let i = index"
+      class="list-group-item d-flex justify-content-between align-items-center list-group-item-action">
+    <div class="col-md-12">
+      <div class="row">
+        <div class="col-md-6">
+          <p class="lead">{{issue.id}}: Issue{{issue.summary}} <span><i
+            class="fa fa-fw fa-1x py-1 fa-flag text-danger"></i></span>
+            <br>
+            <small>{{issue.issueTypeDescription}}</small>
+          </p>
+        </div>
+        <div class="col-md-6 text-right">
+          <span class="badge badge-pill badge-info">Payments</span>
+          <span class="badge badge-pill badge-info">Team1</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-7 col-8" style="">
+          <p contenteditable="true" class="mb-0">Alejandro Perez</p>
+        </div>
+        <div class="col-md-2 col-4 text-right" style=""><span>1<i
+          class="fa fa-fw fa-1x py-1 fa-paperclip fa-lg text-muted"></i></span><span>2<i
+          class="fa fa-fw fa-1x py-1 fa-comment fa-lg text-muted"></i></span></div>
+        <div class="col-md-3 text-right" style="">
+          <p class="mb-0"><b>{{issue.issueStateDescription}}</b></p>
+        </div>
+      </div>
+    </div>
+  </li>
+</ul>

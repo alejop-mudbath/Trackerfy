@@ -6,10 +6,11 @@ import { AppComponent } from './app.component';
 import {ShellModule} from "./shell/shell.module";
 import {HttpClientModule} from "@angular/common/http";
 import {UsersModule} from "./users/users.module";
+import {IssuesModule} from "./issues/issues.module";
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -17,6 +18,7 @@ import {UsersModule} from "./users/users.module";
     ShellModule,
     HttpClientModule,
     UsersModule,
+    IssuesModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
