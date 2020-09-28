@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {IssuesListComponent} from "./issues-list/issues-list.component";
 
 @Component({
   selector: 'app-issues-container',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IssuesContainerComponent implements OnInit {
 
-  constructor() { }
+  constructor(private comp: IssuesListComponent) { }
 
   ngOnInit(): void {
   }
 
+  loadIssues() {
+    this.comp.ngOnInit();
+  }
 }

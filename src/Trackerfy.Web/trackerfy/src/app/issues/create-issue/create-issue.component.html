@@ -29,7 +29,9 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="submit" class="btn btn-primary" [disabled]="!newIssueForm.valid">Create
+        <button type="submit" class="btn btn-primary" [disabled]="!newIssueForm.valid" >Create
+        </button>
+        <button class="btn btn-default" (click)="modal.dismiss('Cross click')">Close
         </button>
       </div>
     </form>

@@ -1,9 +1,11 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, Output} from '@angular/core';
 import {ModalDismissReasons, NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {IssueTypesService} from "../../issue-types/issue-types.service";
 import {IssueTypeInterface} from "../../issue-types/issue-type.interface";
 import {IssuesService} from "../issues.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {ToastrService} from "ngx-toastr";
+import { EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-create-issue',
@@ -19,15 +21,20 @@ export class CreateIssueComponent implements OnInit {
     summary: new FormControl('', Validators.required),
   })
 
-  constructor(private modalService: NgbModal, private issueTypesService: IssueTypesService,
-              private issuesService: IssuesService) {
+  @Output() issueCreateEvent = new EventEmitter();
+  ngbModalRef: Promise<void>;
+
+  constructor(private modalService: NgbModal,
+              private issueTypesService: IssueTypesService,
+              private issuesService: IssuesService,
+              private toastr: ToastrService,) {
 
   }
 
   open(content) {
     this.getIssueTypes();
 
-    this.modalService.open(content, {ariaLabelledBy: 'Create new issue', size: "lg"}).result.then((result) => {
+    this.ngbModalRef =  this.modalService.open(content, {ariaLabelledBy: 'Create new issue', size: "lg"}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${CreateIssueComponent.getDismissReason(reason)}`;
@@ -56,7 +63,9 @@ export class CreateIssueComponent implements OnInit {
   createIssue() {
     if (this.newIssueForm.valid) {
       this.issuesService.create(this.newIssueForm.getRawValue()).subscribe(()=>{
-        console.log("Created")
+        this.newIssueForm.reset();
+        this.toastr.success("Issue was created successfully")
+        this.issueCreateEvent.emit(null);
       })
     }
   }

@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {IssueInterface} from "./issue.interface";
 import {CreateIssueModel} from "./shared/createIssueModel";
+import {IssueInterface} from "./shared/issue.interface";
 
 @Injectable({
   providedIn: 'root'
