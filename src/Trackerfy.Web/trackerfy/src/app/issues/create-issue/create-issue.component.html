@@ -7,28 +7,32 @@
         <span aria-hidden="true">×</span>
       </button>
     </div>
-    <div class="modal-body">
-      <form class="form">
-        <div class="form-group mb-2">
-          <div class="input-group-prepend">
-            <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Type
-            </button>
-            <div class="dropdown">
-              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="#">Bug</a>
-                <a class="dropdown-item" href="#">Story</a>
-              </div>
+    <form [formGroup]="newIssueForm" (ngSubmit)="createIssue()" class="form">
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-3">
+            <div class="form-group mb-2">
+              <label for="issueType">Type</label>
+              <select name="issueType" id="issueType" formControlName="issueTypeId" class="form-control">
+                <option>--select--</option>
+                <option *ngFor="let issueType of issueTypes" value="{{issueType.id}}">{{issueType.description}}</option>
+              </select>
             </div>
-            <input type="text" class="form-control" id="summary" name="summary" placeholder="Summary">
+          </div>
+          <div class="col-sm-9">
+            <div class="form-group">
+              <label for="summary">Summary</label>
+              <input type="text" formControlName="summary"  class="form-control" id="summary" name="summary"
+                     placeholder="Write something...">
+            </div>
           </div>
         </div>
-      </form>
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-primary" (click)="modal.close('Save click')">Create</button>
-    </div>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary" [disabled]="!newIssueForm.valid">Create
+        </button>
+      </div>
+    </form>
   </div>
 
 </ng-template>

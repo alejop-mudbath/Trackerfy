@@ -1,5 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {ModalDismissReasons, NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {IssueTypesService} from "../../issue-types/issue-types.service";
+import {IssueTypeInterface} from "../../issue-types/issue-type.interface";
+import {IssuesService} from "../issues.service";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-create-issue',
@@ -9,16 +13,31 @@ import {ModalDismissReasons, NgbModal} from "@ng-bootstrap/ng-bootstrap";
 export class CreateIssueComponent implements OnInit {
 
   closeResult: string;
+  issueTypes: IssueTypeInterface[];
+  newIssueForm = new FormGroup({
+    issueTypeId: new FormControl('', Validators.required),
+    summary: new FormControl('', Validators.required),
+  })
 
-  constructor(private modalService: NgbModal) {
+  constructor(private modalService: NgbModal, private issueTypesService: IssueTypesService,
+              private issuesService: IssuesService) {
+
   }
 
   open(content) {
+    this.getIssueTypes();
+
     this.modalService.open(content, {ariaLabelledBy: 'Create new issue', size: "lg"}).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${CreateIssueComponent.getDismissReason(reason)}`;
     });
+  }
+
+  private getIssueTypes() {
+    this.issueTypesService.getIssueTypes().subscribe(result => {
+      this.issueTypes = result;
+    })
   }
 
   private static getDismissReason(reason: any): string {
@@ -34,4 +53,11 @@ export class CreateIssueComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  createIssue() {
+    if (this.newIssueForm.valid) {
+      this.issuesService.create(this.newIssueForm.getRawValue()).subscribe(()=>{
+        console.log("Created")
+      })
+    }
+  }
 }

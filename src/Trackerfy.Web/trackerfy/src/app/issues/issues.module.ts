@@ -8,6 +8,8 @@ import {IssuesContainerComponent} from './issues-container/issues-container.comp
 import {IssuesContentComponent} from './issues-container/issues-content/issues-content.component';
 import {CreateIssueComponent} from './create-issue/create-issue.component';
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
+import {IssueTypesModule} from "../issue-types/issue-types.module";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -16,7 +18,10 @@ import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
   imports: [
     CommonModule,
     IssuesRoutingModule,
-    NgbModule
+    NgbModule,
+    IssueTypesModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [IssuesService],
   bootstrap: [IssuesContainerComponent]
