@@ -1,17 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using FluentValidation;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using Microsoft.OpenApi.Models;
 using Trackerfy.API.Common;
 using Trackerfy.Application;
 using Trackerfy.Application.Interfaces;
@@ -34,12 +26,11 @@ namespace Trackerfy.API
             services.AddApplication();
             services.AddInfrastructure(Configuration);
 
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson();
 
             services.AddValidatorsFromAssembly(typeof(IContext).Assembly);
 
             services.AddScoped<ICurrentUserService, CurrentUserService>();
-            services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo { Title = "API" }); });
 
             services.AddCors(options => options.AddPolicy("AllowAll", p => p.AllowAnyOrigin()
                 .AllowAnyMethod()
@@ -53,12 +44,10 @@ namespace Trackerfy.API
         {
 
             app.UseCors("AllowAll");
-            app.UseSwagger();
-            app.UseSwaggerUI(c =>
-            {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "API");
-                c.RoutePrefix = string.Empty;
-            });
+
+            app.UseOpenApi(); // serve OpenAPI/Swagger documents
+            app.UseSwaggerUi3(); // serve Swagger UI
+            app.UseReDoc(); // serve ReDoc UI
 
             if (env.IsDevelopment())
             {
