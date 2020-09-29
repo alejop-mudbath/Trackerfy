@@ -9,6 +9,7 @@ import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {IssueTypesModule} from "../issue-types/issue-types.module";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {IssueDetailsComponent} from "./issues-container/issue-details/issue-details.component";
+import {MomentModule} from "ngx-moment";
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import {IssueDetailsComponent} from "./issues-container/issue-details/issue-deta
     IssueTypesModule,
     FormsModule,
     ReactiveFormsModule,
+    MomentModule,
   ],
   providers: [IssuesService, IssuesListComponent],
   bootstrap: [IssuesContainerComponent]

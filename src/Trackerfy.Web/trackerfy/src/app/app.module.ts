@@ -9,6 +9,7 @@ import {UsersModule} from "./users/users.module";
 import {IssuesModule} from "./issues/issues.module";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {ToastrModule} from "ngx-toastr";
+import {MomentModule} from "ngx-moment";
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import {ToastrModule} from "ngx-toastr";
     ToastrModule.forRoot({
       timeOut: 5000,
       positionClass: 'toast-top-right'
-    })
+    }),
+    MomentModule
   ],
   providers: [],
   bootstrap: [AppComponent]

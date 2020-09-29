@@ -1,11 +1,10 @@
-import {Component, OnInit, Output} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ModalDismissReasons, NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {IssueTypesService} from "../../issue-types/issue-types.service";
 import {IssueTypeInterface} from "../../issue-types/issue-type.interface";
 import {IssuesService} from "../issues.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ToastrService} from "ngx-toastr";
-import {EventEmitter} from '@angular/core';
 import {Router} from "@angular/router";
 
 @Component({

@@ -16,7 +16,7 @@ export class IssueDetailsComponent implements OnInit {
 
     this.route.params.subscribe(params => {
       this.issueId = params["issueId"];
-
+      this.getIssue();
     });
 
   }

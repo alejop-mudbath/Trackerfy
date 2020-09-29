@@ -2,7 +2,7 @@
   <div class="card-body">
     <div class="row">
       <div class="col-md-6">
-        <p class="lead">{{issueId}}:
+        <p class="lead">{{issue.id}}: {{issue.summary}}
           <span><i class="fa fa-fw fa-1x py-1 fa-flag text-danger		"></i></span></p>
       </div>
       <div class="col-md-6 text-right">
@@ -14,8 +14,8 @@
       <div class="col-md-8">
         <div class="row mb-2">
           <div class="col-md-12">
-            <div class="form-group"><label for="form17">Description</label>
-              <textarea type="text" class="form-control form-control-lg" id="form17"></textarea>
+            <div class="form-group"><label for="description">Description</label>
+              <textarea class="form-control form-control-lg" id="description"></textarea>
             </div>
           </div>
         </div>
@@ -35,12 +35,9 @@
         <div class="row">
           <div class="col-md-12">
             <div class="form-group">
-              <div class="form-group">
-                <div class="form-group">
-                  <div class="form-group"><label>Comments</label><input type="text" class="form-control" id="form16"
-                                                                        placeholder="Add comment"></div>
-                </div>
-              </div>
+              <label for="comment">Comments</label>
+              <input type="text" class="form-control" id="comment" name="comment"
+                     placeholder="Add comment">
             </div>
           </div>
         </div>
@@ -50,7 +47,7 @@
           <div class="col-md-12 text-right mb-2">
             <div class="btn-group">
               <button class="btn dropdown-toggle btn-primary" data-toggle="dropdown" aria-expanded="false"
-                      contenteditable="true"> In progress
+                      contenteditable="true"> {{issue.issueStateDescription}}
               </button>
               <div class="dropdown-menu" x-placement="bottom-start"
                    style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 38px, 0px);">
@@ -63,20 +60,21 @@
         </div>
         <div class="row">
           <div class="col-md-12 mb-2">
-            <div class="form-group"><label>Responsable</label><input type="text" class="form-control" id="form36"
-                                                                     value="Alejandro Perez"></div>
+            <div class="form-group"><label for="responsable">Responsable</label>
+              <input type="text" class="form-control" id="responsable" name="responsable"
+                     value="Alejandro Perez"></div>
           </div>
         </div>
         <div class="row">
           <div class="col-md-12">
             <label>Created</label>
-            <p class="text-monospace" contenteditable="true">Sandra Jowett&nbsp; 23/12/209</p>
+            <p class="text-muted">Sandra Jowett&nbsp; {{issue.created | amTimeAgo}}</p>
           </div>
         </div>
         <div class="row">
           <div class="col-md-12">
             <label>Last modification</label>
-            <p class="text-monospace" contenteditable="true">Sandra Jowett&nbsp; 23/12/209</p>
+            <p class="text-muted">Sandra Jowett&nbsp; {{issue.lastModified | amTimeAgo}}</p>
           </div>
         </div>
       </div>
