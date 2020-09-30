@@ -6,5 +6,23 @@
       </a>
 
     </div>
+    <a>
+      <ng-container *ngIf="auth.isLoggedIn">
+        {{auth.userProfile.name}}
+      </ng-container>
+    </a>
+
+    <a>
+      <ng-container *ngIf="auth.isLoggedIn else loggedOut">
+        <button (click)="auth.logout()">
+          Log out
+        </button>
+      </ng-container>
+    </a>
+    <a>
+      <ng-template #loggedOut>
+        <button (click)="auth.login()">Log in</button>
+      </ng-template>
+    </a>
   </div>
 </header>

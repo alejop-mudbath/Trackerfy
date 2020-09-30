@@ -4,11 +4,10 @@ import { RegisterComponent } from './register/register.component';
 import {FormsModule} from "@angular/forms";
 import {UsersRoutingModule} from "./users.routing-module";
 import {AuthService} from "./auth.service";
-
-
+import { AuthCallbackComponent } from './auth-callback/auth-callback.component';
 
 @NgModule({
-  declarations: [RegisterComponent],
+  declarations: [RegisterComponent, AuthCallbackComponent],
   imports: [
     CommonModule,
     FormsModule,
