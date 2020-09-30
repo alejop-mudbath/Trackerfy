@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {IssuesService} from "../../issues.service";
 import {IssueInterface} from "../../shared/issue.interface";
@@ -10,7 +10,7 @@ import {IssueInterface} from "../../shared/issue.interface";
 })
 export class IssueDetailsComponent implements OnInit {
   issueId: number;
-  issue: IssueInterface;
+  issue: IssueInterface = {} as IssueInterface;
 
   constructor(private route: ActivatedRoute, private issuesService: IssuesService) {
 
@@ -24,8 +24,8 @@ export class IssueDetailsComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  getIssue(){
-    this.issuesService.getIssueById(this.issueId).subscribe(result=>{
+  getIssue() {
+    this.issuesService.getIssueById(this.issueId).subscribe(result => {
       this.issue = result;
     })
   }
