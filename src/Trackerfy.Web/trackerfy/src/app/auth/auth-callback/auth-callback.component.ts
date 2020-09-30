@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {Router} from "@angular/router";
 import {AuthService} from "../auth.service";
 
 @Component({
@@ -9,7 +8,7 @@ import {AuthService} from "../auth.service";
 })
 export class AuthCallbackComponent implements OnInit {
 
-  constructor(private auth: AuthService, private router: Router) {
+  constructor(private auth: AuthService) {
   }
 
   ngOnInit(): void {

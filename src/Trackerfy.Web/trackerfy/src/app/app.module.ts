@@ -11,6 +11,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ToastrModule} from "ngx-toastr";
 import {MomentModule} from "ngx-moment";
 import { HomeComponent } from './pages/home/home.component';
+import {AuthModule} from "./auth/auth.module";
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { HomeComponent } from './pages/home/home.component';
       timeOut: 5000,
       positionClass: 'toast-top-right'
     }),
-    MomentModule
+    MomentModule,
+    AuthModule
   ],
   providers: [],
   bootstrap: [AppComponent]

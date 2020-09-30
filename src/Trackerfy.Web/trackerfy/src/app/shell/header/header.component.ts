@@ -1,6 +1,6 @@
 import {Component, OnInit, OnDestroy, Inject} from '@angular/core';
 import {DOCUMENT} from "@angular/common";
-import {AuthService} from "../../users/auth.service";
+import {AuthService} from "../../auth/auth.service";
 
 @Component({
   selector: 'app-header',

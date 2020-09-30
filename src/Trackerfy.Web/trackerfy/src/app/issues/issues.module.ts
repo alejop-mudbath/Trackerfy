@@ -10,6 +10,7 @@ import {IssueTypesModule} from "../issue-types/issue-types.module";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {IssueDetailsComponent} from "./issues-container/issue-details/issue-details.component";
 import {MomentModule} from "ngx-moment";
+import {AuthModule} from "../auth/auth.module";
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import {MomentModule} from "ngx-moment";
     FormsModule,
     ReactiveFormsModule,
     MomentModule,
+    AuthModule
   ],
   providers: [IssuesService, IssuesListComponent],
   exports: [

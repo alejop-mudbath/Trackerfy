@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {finalize} from "rxjs/operators";
 import {RegisterUser} from "./user-register.model";
-import {AuthService} from "../auth.service";
+import {AuthService} from "../../auth/auth.service";
 
 @Component({
   selector: 'app-register',

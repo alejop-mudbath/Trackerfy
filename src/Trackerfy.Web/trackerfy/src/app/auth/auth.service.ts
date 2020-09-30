@@ -87,6 +87,7 @@ export class AuthService {
       return throwError(error.error.error);
     }
   }
+
   get isLoggedIn(): boolean {
     // Check if current date is before token
     // expiration and user is signed in locally

@@ -3,16 +3,16 @@ import { CommonModule } from '@angular/common';
 import { RegisterComponent } from './register/register.component';
 import {FormsModule} from "@angular/forms";
 import {UsersRoutingModule} from "./users.routing-module";
-import {AuthService} from "./auth.service";
-import { AuthCallbackComponent } from './auth-callback/auth-callback.component';
+import {AuthModule} from "../auth/auth.module";
 
 @NgModule({
-  declarations: [RegisterComponent, AuthCallbackComponent],
+  declarations: [RegisterComponent],
   imports: [
     CommonModule,
     FormsModule,
-    UsersRoutingModule
+    UsersRoutingModule,
+    AuthModule
   ],
-  providers:[AuthService]
+  providers:[]
 })
 export class UsersModule { }
