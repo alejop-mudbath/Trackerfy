@@ -13,7 +13,7 @@ import {MomentModule} from "ngx-moment";
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
