@@ -73,7 +73,7 @@ export class CreateIssueComponent implements OnInit {
   }
 
   goIssueDetail(issueId) {
-    this.router.navigate(["/issues/issue-detail/", issueId]);
+    this.router.navigate(["/issue-detail/", issueId]);
   }
 
 }

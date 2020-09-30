@@ -24,6 +24,9 @@ import {MomentModule} from "ngx-moment";
     MomentModule,
   ],
   providers: [IssuesService, IssuesListComponent],
+  exports: [
+    IssuesContainerComponent
+  ],
   bootstrap: [IssuesContainerComponent]
 })
 export class IssuesModule {

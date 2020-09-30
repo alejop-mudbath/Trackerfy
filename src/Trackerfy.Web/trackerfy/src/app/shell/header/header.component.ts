@@ -1,5 +1,7 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import {Component, OnInit, OnDestroy, Inject} from '@angular/core';
 import { Subscription } from 'rxjs';
+import {AuthService} from "@auth0/auth0-angular";
+import {DOCUMENT} from "@angular/common";
 
 @Component({
   selector: 'app-header',
@@ -9,10 +11,8 @@ import { Subscription } from 'rxjs';
 export class HeaderComponent implements OnInit, OnDestroy {
 
   name: string;
-  isAuthenticated: boolean;
-  subscription:Subscription;
 
-  constructor() { }
+  constructor(@Inject(DOCUMENT) public document: Document, public auth: AuthService) {}
 
   ngOnInit() {
     this.name = "";
@@ -20,6 +20,5 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     // prevent memory leak when component is destroyed
-    this.subscription.unsubscribe();
   }
 }
