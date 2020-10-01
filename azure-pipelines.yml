@@ -26,11 +26,11 @@ steps:
 
 
 - script: dir
-  workingDirectory: 'src/Trackerfy.web'
+  workingDirectory: 'src/Trackerfy.web/'
   displayName: List contents of build folder
   
 - script: dir
-  workingDirectory: 'src/Trackerfy.web/trackerfy'
+  workingDirectory: 'src/Trackerfy.web/trackerfy/'
   displayName: List contents of build folder
 
 - script: |
