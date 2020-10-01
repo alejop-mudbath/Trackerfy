@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Trackerfy.Application.Interfaces;
+using Trackerfy.Application.Common.Interfaces;
 using Trackerfy.Infrastructure.Identity;
 using Trackerfy.Infrastructure.Persistence;
 using Trackerfy.Infrastructure.Persistence.Issues;

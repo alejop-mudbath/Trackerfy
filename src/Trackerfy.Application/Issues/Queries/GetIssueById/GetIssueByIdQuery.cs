@@ -1,7 +1,7 @@
 using MediatR;
-using Trackerfy.Application.Queries.GetAllIssues;
+using Trackerfy.Application.Issues.Queries.GetAllIssues;
 
-namespace Trackerfy.Application.Queries.GetIssueById
+namespace Trackerfy.Application.Issues.Queries.GetIssueById
 {
     public class GetIssueByIdQuery : IRequest<IssueDTO>
     {

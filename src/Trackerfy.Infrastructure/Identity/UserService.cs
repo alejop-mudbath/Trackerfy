@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
-using Trackerfy.Application.Interfaces;
+using Trackerfy.Application.Common.Interfaces;
 using Trackerfy.Domain.Entities;
 
 namespace Trackerfy.Infrastructure.Identity

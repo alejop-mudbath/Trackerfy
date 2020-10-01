@@ -1,7 +1,7 @@
 using AutoMapper;
 using Trackerfy.Domain.Entities;
 
-namespace Trackerfy.Application.Queries.GetAllIssues
+namespace Trackerfy.Application.Issues.Queries.GetAllIssues
 {
     public class IssueDTOProfile: Profile
     {

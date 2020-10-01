@@ -6,11 +6,11 @@ using AutoMapper.QueryableExtensions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Trackerfy.Application.Common.Exceptions;
-using Trackerfy.Application.Interfaces;
-using Trackerfy.Application.Queries.GetAllIssues;
+using Trackerfy.Application.Common.Interfaces;
+using Trackerfy.Application.Issues.Queries.GetAllIssues;
 using Trackerfy.Domain.Entities;
 
-namespace Trackerfy.Application.Queries.GetIssueById
+namespace Trackerfy.Application.Issues.Queries.GetIssueById
 {
     public class GetIssueByIdQueryHandler: IRequestHandler<GetIssueByIdQuery, IssueDTO>
     {

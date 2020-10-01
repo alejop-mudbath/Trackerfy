@@ -1,7 +1,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using Trackerfy.Application.Interfaces;
+using Trackerfy.Application.Common.Interfaces;
 using Trackerfy.Domain.Entities;
 
 namespace Trackerfy.Infrastructure.Persistence.IssueStates

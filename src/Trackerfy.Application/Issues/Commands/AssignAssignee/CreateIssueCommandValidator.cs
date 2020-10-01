@@ -1,6 +1,6 @@
 using FluentValidation;
 
-namespace Trackerfy.Application.Commands.AssignAssignee
+namespace Trackerfy.Application.Issues.Commands.AssignAssignee
 {
     public class AssignIssueCommandValidator: AbstractValidator<AssignAssigneeCommand>
     {

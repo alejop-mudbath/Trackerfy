@@ -4,7 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using FluentValidation;
 using MediatR;
-using ValidationException = Trackerfy.Application.exceptions.ValidationException;
+using ValidationException = Trackerfy.Application.Common.Exceptions.ValidationException;
 
 namespace Trackerfy.Application.Common.Behaviors
 {

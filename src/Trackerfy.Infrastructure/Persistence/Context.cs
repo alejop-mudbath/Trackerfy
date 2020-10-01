@@ -2,7 +2,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Trackerfy.Application;
-using Trackerfy.Application.Interfaces;
+using Trackerfy.Application.Common.Interfaces;
 using Trackerfy.Domain;
 using Trackerfy.Domain.Entities;
 using Trackerfy.Infrastructure.Persistence.Issues;

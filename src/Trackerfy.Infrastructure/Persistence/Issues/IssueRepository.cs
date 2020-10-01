@@ -1,7 +1,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 using Trackerfy.Application.Common.Exceptions;
-using Trackerfy.Application.Interfaces;
+using Trackerfy.Application.Common.Interfaces;
 using Trackerfy.Domain.Entities;
 
 namespace Trackerfy.Infrastructure.Persistence.Issues

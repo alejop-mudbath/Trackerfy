@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using Trackerfy.Application.Common.Exceptions;
-using Trackerfy.Application.exceptions;
 
 namespace Trackerfy.API.Common
 {

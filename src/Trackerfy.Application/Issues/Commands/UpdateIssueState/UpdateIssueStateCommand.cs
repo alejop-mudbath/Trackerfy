@@ -1,6 +1,6 @@
 using MediatR;
 
-namespace Trackerfy.Application.Commands.UpdateIssueState
+namespace Trackerfy.Application.Issues.Commands.UpdateIssueState
 {
     public class UpdateIssueStateCommand: IRequest
     {

@@ -1,6 +1,6 @@
 using Shouldly;
 using Trackerfy.Application;
-using Trackerfy.Application.Commands.CreateIssue;
+using Trackerfy.Application.Issues.Commands.CreateIssue;
 using Xunit;
 
 namespace Trackerfy.IntegrationTests

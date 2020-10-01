@@ -1,9 +1,9 @@
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
-using Trackerfy.Application.Interfaces;
+using Trackerfy.Application.Common.Interfaces;
 
-namespace Trackerfy.Application.Commands.AssignAssignee
+namespace Trackerfy.Application.Issues.Commands.AssignAssignee
 {
     public class AssignAssigneeCommandHandler: IRequestHandler<AssignAssigneeCommand, int>
     {

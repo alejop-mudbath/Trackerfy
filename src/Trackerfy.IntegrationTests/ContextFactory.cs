@@ -1,6 +1,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Trackerfy.Application;
+using Trackerfy.Application.Common.Interfaces;
 using Trackerfy.Infrastructure;
 using Trackerfy.Infrastructure.Persistence;
 

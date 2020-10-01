@@ -1,7 +1,7 @@
 using System.Threading;
 using Trackerfy.Domain.Entities;
 
-namespace Trackerfy.Application.Interfaces
+namespace Trackerfy.Application.Common.Interfaces
 {
     public interface IIssueTypeRepository
     {

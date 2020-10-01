@@ -1,10 +1,10 @@
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
-using Trackerfy.Application.Interfaces;
+using Trackerfy.Application.Common.Interfaces;
 using Trackerfy.Domain.Entities;
 
-namespace Trackerfy.Application.Commands.CreateIssue
+namespace Trackerfy.Application.Issues.Commands.CreateIssue
 {
     public class CreateIssueCommandHandler: IRequestHandler<CreateIssueCommand, int>
     {

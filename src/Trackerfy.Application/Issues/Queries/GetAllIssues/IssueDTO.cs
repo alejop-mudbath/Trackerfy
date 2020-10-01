@@ -1,6 +1,6 @@
 using System;
 
-namespace Trackerfy.Application.Queries.GetAllIssues
+namespace Trackerfy.Application.Issues.Queries.GetAllIssues
 {
     public class IssueDTO
     {

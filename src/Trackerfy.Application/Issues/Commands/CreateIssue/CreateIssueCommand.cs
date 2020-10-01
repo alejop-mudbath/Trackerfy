@@ -1,6 +1,6 @@
 using MediatR;
 
-namespace Trackerfy.Application.Commands.CreateIssue
+namespace Trackerfy.Application.Issues.Commands.CreateIssue
 {
     public class CreateIssueCommand: IRequest<int>
     {

@@ -4,10 +4,11 @@
 
 export const environment = {
   production: false,
+  apiUrl: 'http://localhost:5000/api',
   auth: {
     domain: 'trackerfy.us.auth0.com',
     clientId: 'PJhl8w04c6MrpWfmwOifNzkYPDi9EarR',
-    audience: 'http://localhost:5000', // e.g., http://localhost:3001
+    audience: 'https://localhost:5001/', // e.g., http://localhost:3001
     redirect: 'http://localhost:4200/callback',
     appUrl: 'http://localhost:4200',
     scope: 'openid profile email'

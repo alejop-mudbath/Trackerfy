@@ -20,6 +20,7 @@ export class AuthService {
       domain: environment.auth.domain,
       client_id: environment.auth.clientId,
       redirect_uri: environment.auth.redirect,// `${window.location.origin}`
+      audience: environment.auth.audience,
     })
   ) as Observable<Auth0Client>).pipe(
     shareReplay(1), // Every subscription receives the same shared value
@@ -29,6 +30,9 @@ export class AuthService {
   isAuthenticated$ = this.auth0Client$.pipe(
     concatMap((client: Auth0Client) => from(client.isAuthenticated())),
     tap(res => this.loggedIn = res)
+  );
+  getTokenSilently: Observable<any> = this.auth0Client$.pipe(
+    concatMap((client: Auth0Client) => from(client.getTokenSilently()))
   );
   handleRedirectCallback$ = this.auth0Client$.pipe(
     concatMap((client: Auth0Client) => from(client.handleRedirectCallback()))

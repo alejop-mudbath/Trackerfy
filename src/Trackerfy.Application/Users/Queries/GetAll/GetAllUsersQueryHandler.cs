@@ -3,7 +3,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
-using Trackerfy.Application.Interfaces;
+using Trackerfy.Application.Common.Interfaces;
 
 namespace Trackerfy.Application.Users.Queries.GetAll
 {

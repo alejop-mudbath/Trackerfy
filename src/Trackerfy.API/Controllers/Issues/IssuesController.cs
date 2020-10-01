@@ -3,10 +3,10 @@ using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Trackerfy.Application.Commands.CreateIssue;
-using Trackerfy.Application.Commands.UpdateIssueState;
-using Trackerfy.Application.Queries.GetAllIssues;
-using Trackerfy.Application.Queries.GetIssueById;
+using Trackerfy.Application.Issues.Commands.CreateIssue;
+using Trackerfy.Application.Issues.Commands.UpdateIssueState;
+using Trackerfy.Application.Issues.Queries.GetAllIssues;
+using Trackerfy.Application.Issues.Queries.GetIssueById;
 
 namespace Trackerfy.API.Controllers.Issues
 {

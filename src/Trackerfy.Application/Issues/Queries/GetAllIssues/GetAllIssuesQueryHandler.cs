@@ -1,15 +1,14 @@
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Trackerfy.Application.Interfaces;
+using Trackerfy.Application.Common.Interfaces;
 using Trackerfy.Domain.Entities;
 
-namespace Trackerfy.Application.Queries.GetAllIssues
+namespace Trackerfy.Application.Issues.Queries.GetAllIssues
 {
     public class GetAllIssuesQueryHandler: IRequestHandler<GetAllIssuesQuery, List<IssueDTO>>
     {

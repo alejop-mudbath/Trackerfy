@@ -2,7 +2,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Trackerfy.Application.Commands.AssignAssignee;
+using Trackerfy.Application.Issues.Commands.AssignAssignee;
 
 namespace Trackerfy.API.Controllers.Assignee
 {

@@ -1,6 +1,6 @@
 using System.Linq;
 using System.Threading;
-using Trackerfy.Application.Interfaces;
+using Trackerfy.Application.Common.Interfaces;
 using Trackerfy.Domain.Entities;
 
 namespace Trackerfy.Infrastructure.Persistence.IssueTypes

@@ -1,6 +1,6 @@
 using MediatR;
 
-namespace Trackerfy.Application.Commands.AssignAssignee
+namespace Trackerfy.Application.Issues.Commands.AssignAssignee
 {
     public class AssignAssigneeCommand : IRequest<int>
     {
