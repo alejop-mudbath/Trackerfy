@@ -32,7 +32,7 @@ namespace Trackerfy.Application.Issues.Queries.GetIssueStatesStatistics
                 {
                     stateId = s.Key.IssueStateId,
                     stateDescription = s.Key.Description,
-                    count = s.Sum(x => x.Id)
+                    count = s.Count()
                 }).ToListAsync(cancellationToken);
         }
     }
