@@ -8,6 +8,7 @@ using Trackerfy.Application.Issues.Commands.UpdateIssueState;
 using Trackerfy.Application.Issues.Queries.GetAllIssues;
 using Trackerfy.Application.Issues.Queries.GetIssueById;
 using Trackerfy.Application.Issues.Queries.GetIssuesByState;
+using Trackerfy.Application.Issues.Queries.GetIssueStatesStatistics;
 
 namespace Trackerfy.API.Controllers.Issues
 {
@@ -52,6 +53,14 @@ namespace Trackerfy.API.Controllers.Issues
             return await _mediator.Send(query, cancellationToken);
         }
 
+        [HttpGet]
+        [Route("statistics")]
+        public async Task<ActionResult<List<IssueStateStatisticDTO>>> GetStatistics(CancellationToken cancellationToken)
+        {
+            var query = new GetIssuesStatisticsQuery();
+            return await _mediator.Send(query, cancellationToken);
+        }
+
         [HttpPut("{issueId}/state")]
         public async Task<Unit> Update(int issueId, UpdateIssueStateRequest request, CancellationToken cancellationToken)
         {
@@ -59,4 +68,5 @@ namespace Trackerfy.API.Controllers.Issues
             return await _mediator.Send(command, cancellationToken);
         }
     }
+
 }
