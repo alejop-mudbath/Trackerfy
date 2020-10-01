@@ -12,14 +12,15 @@ export class IssuesListComponent implements OnInit {
   issues: IssueInterface[] = [];
 
   constructor(private issuesServices: IssuesService, private route: ActivatedRoute) {
+    this.route.params.subscribe(params => {
+      const stateId = params["stateId"];
+      console.log(stateId)
+      this.getIssues(stateId);
+    });
   }
 
   ngOnInit(): void {
 
-    this.route.params.subscribe(params => {
-      const stateId = params["stateId"];
-      this.getIssues(stateId);
-    });
   }
 
   async getIssues(statetId) {

@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import {IssuesListComponent} from "./issues-list/issues-list.component";
+import {Component, OnInit} from '@angular/core';
+import {IssuesService} from "../issues.service";
+import {IssuesStateStatisticModel} from "../shared/issuesStateStatistic.model";
 
 @Component({
   selector: 'app-issues-container',
@@ -7,13 +8,15 @@ import {IssuesListComponent} from "./issues-list/issues-list.component";
   styleUrls: ['./issues-container.component.sass']
 })
 export class IssuesContainerComponent implements OnInit {
+  issueStatistics: IssuesStateStatisticModel[] = [];
 
-  constructor(private comp: IssuesListComponent) { }
+  constructor(private issuesService: IssuesService) {
+  }
 
   ngOnInit(): void {
+    this.issuesService.getIssuesStatistics().subscribe(
+      result => this.issueStatistics = result
+    )
   }
 
-  loadIssues() {
-    this.comp.ngOnInit();
-  }
 }

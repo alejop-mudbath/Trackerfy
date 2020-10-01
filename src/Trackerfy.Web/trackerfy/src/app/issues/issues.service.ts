@@ -5,6 +5,7 @@ import {IssueInterface} from "./shared/issue.interface";
 import {AuthService} from "../auth/auth.service";
 import {Observable} from "rxjs";
 import {switchMap} from "rxjs/operators";
+import {IssuesStateStatisticModel} from "./issuesStateStatistic.model";
 
 @Injectable({
   providedIn: 'root'
@@ -24,10 +25,19 @@ export class IssuesService {
     );
   }
 
+  getIssuesStatistics(): Observable<IssuesStateStatisticModel[]> {
+    return this.auth.getTokenSilently.pipe(
+      switchMap(token =>
+        this.http.get<IssueInterface[]>(`${this.authApiURI}/issues/statistics`, {
+          headers: {Authorization: `Bearer ${token}`}
+        }))
+    );
+  }
+
   getIssuesByState(stateId): Observable<IssueInterface[]> {
     return this.auth.getTokenSilently.pipe(
       switchMap(token =>
-        this.http.get<IssueInterface[]>(`${this.authApiURI}/issues/${stateId}`, {
+        this.http.get<IssueInterface[]>(`${this.authApiURI}/issues/state/${stateId}`, {
           headers: {Authorization: `Bearer ${token}`}
         }))
     );
