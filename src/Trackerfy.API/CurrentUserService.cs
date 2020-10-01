@@ -1,3 +1,5 @@
+using System.Security.Claims;
+using Microsoft.AspNetCore.Http;
 using Trackerfy.Application;
 using Trackerfy.Application.Common.Interfaces;
 
@@ -7,7 +9,17 @@ namespace Trackerfy.API
     {
         public string GetUserId()
         {
-            return "123";
+            return UserId;
         }
+
+        private readonly IHttpContextAccessor _httpContextAccessor;
+
+        public CurrentUserService(IHttpContextAccessor httpContextAccessor)
+        {
+            _httpContextAccessor = httpContextAccessor;
+        }
+
+        public string UserId => _httpContextAccessor.HttpContext?.User?.FindFirstValue(ClaimTypes.NameIdentifier);
+
     }
 }
