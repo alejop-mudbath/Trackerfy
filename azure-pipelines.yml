@@ -15,8 +15,17 @@ steps:
     versionSpec: '10.x'
   displayName: 'Install Node.js'
 
+- script: dir
+  workingDirectory: ''
+  displayName: List root repo
+  
+
+- script: dir
+  workingDirectory: $(Build.BuildDirectory)
+  displayName: List contents of build folder
+
 - script:
-  workingDirectory: $(Agent.BuildDirectory)/src/Trackerfy.Web/trackerfy
+  workingDirectory: $(Agent.BuildDirectory)/Trackerfy.Web/trackerfy
     npm install -g @angular/cli
     npm install
     ng build --prod
