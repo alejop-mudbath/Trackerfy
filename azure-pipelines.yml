@@ -21,11 +21,20 @@ steps:
   
 
 - script: dir
-  workingDirectory: $(Build.BuildDirectory)
+  workingDirectory: 'src/'
   displayName: List contents of build folder
 
-- script:
-  workingDirectory: $(Agent.BuildDirectory)/Trackerfy.Web/trackerfy
+
+- script: dir
+  workingDirectory: 'src/Trackerfy.web'
+  displayName: List contents of build folder
+  
+- script: dir
+  workingDirectory: 'src/Trackerfy.web/trackerfy'
+  displayName: List contents of build folder
+
+- script: |
+  workingDirectory: src/Trackerfy.Web/trackerfy/
     npm install -g @angular/cli
     npm install
     ng build --prod
