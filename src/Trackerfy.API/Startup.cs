@@ -1,9 +1,15 @@
+using System;
+using System.Security.Claims;
+using System.Text;
 using FluentValidation;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Tokens;
 using Trackerfy.API.Common;
 using Trackerfy.Application;
 using Trackerfy.Application.Interfaces;
@@ -20,9 +26,17 @@ namespace Trackerfy.API
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            string domain = $"https://{Configuration["Auth0:Domain"]}/";
+            string audience = Configuration["Auth0:Audience"];
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                    options.Authority = domain;
+                    options.Audience = audience;
+                });
+
             services.AddApplication();
             services.AddInfrastructure(Configuration);
 
@@ -42,12 +56,11 @@ namespace Trackerfy.API
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-
             app.UseCors("AllowAll");
 
-            app.UseOpenApi(); // serve OpenAPI/Swagger documents
+            //    app.UseOpenApi(); // serve OpenAPI/Swagger documents
             app.UseSwaggerUi3(); // serve Swagger UI
-            app.UseReDoc(); // serve ReDoc UI
+            //  app.UseReDoc(); // serve ReDoc UI
 
             if (env.IsDevelopment())
             {
@@ -58,6 +71,7 @@ namespace Trackerfy.API
             app.UseHttpsRedirection();
 
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseMvc();

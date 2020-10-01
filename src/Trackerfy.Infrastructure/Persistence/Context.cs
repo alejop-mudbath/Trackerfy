@@ -1,26 +1,22 @@
 using System.Threading;
 using System.Threading.Tasks;
-using IdentityServer4.EntityFramework.Options;
-using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
 using Trackerfy.Application;
 using Trackerfy.Application.Interfaces;
 using Trackerfy.Domain;
 using Trackerfy.Domain.Entities;
-using Trackerfy.Infrastructure.Identity;
 using Trackerfy.Infrastructure.Persistence.Issues;
 using Trackerfy.Infrastructure.Persistence.IssueStates;
 using Trackerfy.Infrastructure.Persistence.IssueTypes;
 
 namespace Trackerfy.Infrastructure.Persistence
 {
-    public class Context : ApiAuthorizationDbContext<ApplicationUser>, IContext
+    public class Context : DbContext, IContext
     {
         private readonly ICurrentUserService _currentUserService;
 
         public Context(DbContextOptions options, ICurrentUserService currentUserService)
-            : base(options, new OperationalStoreOptionsMigrations())
+            : base(options)
         {
             _currentUserService = currentUserService;
         }
