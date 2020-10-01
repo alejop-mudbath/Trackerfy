@@ -16,7 +16,7 @@ steps:
   displayName: 'Install Node.js'
 
 - script:
-  workingDirectory: src/trackerfy.web/trackerfy
+  workingDirectory: $(Agent.BuildDirectory)/src/Trackerfy.Web/trackerfy
     npm install -g @angular/cli
     npm install
     ng build --prod
