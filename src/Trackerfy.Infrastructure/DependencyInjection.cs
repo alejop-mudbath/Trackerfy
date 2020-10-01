@@ -25,10 +25,6 @@ namespace Trackerfy.Infrastructure
             services.AddScoped<IIssueTypeRepository, IssueTypeRepository>();
             services.AddScoped<IIssueStateRepository, IssueStateRepository>();
 
-
-            services.AddIdentityCore<ApplicationUser>()
-                .AddEntityFrameworkStores<Context>();
-
             services.AddTransient<IUserService, UserService>();
 
             return services;

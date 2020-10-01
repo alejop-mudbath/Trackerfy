@@ -1,10 +1,11 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
+using Trackerfy.Domain.Entities;
 
 namespace Trackerfy.Application.Interfaces
 {
     public interface IUserService
     {
-        Task<string> GetUserNameAsync(string userId);
-        Task<string> CreateUserAsync(string userName, string password, string name);
+        Task<List<User>> GetAll();
     }
 }

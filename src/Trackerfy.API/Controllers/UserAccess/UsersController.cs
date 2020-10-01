@@ -1,6 +1,9 @@
+using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Trackerfy.Application.Interfaces;
+using Trackerfy.Application.Users.Queries.GetAll;
 
 namespace Trackerfy.API.Controllers.UserAccess
 {
@@ -8,20 +11,19 @@ namespace Trackerfy.API.Controllers.UserAccess
     [ApiController]
     public class UsersController : Controller
     {
-        private readonly IUserService _userService;
+        private readonly IMediator _mediator;
 
-        public UsersController(IUserService userService)
+        public UsersController(IMediator mediator)
         {
-            _userService = userService;
+            _mediator = mediator;
         }
 
-        [HttpPost]
-        [Route("register")]
-        public async Task<IActionResult> Register([FromBody] RegisterUserRequest request)
+        [HttpGet]
+        public async  Task<ActionResult<List<UserDTO>>>  GetAll(CancellationToken cancellationToken)
         {
-             await _userService.CreateUserAsync(request.Name, request.Email, request.Password);
-
-            return Ok();
+            var query = new GetAllUsersQuery();
+            return await _mediator.Send(query, cancellationToken);
         }
     }
+
 }

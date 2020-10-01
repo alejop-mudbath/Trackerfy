@@ -37,6 +37,12 @@ namespace Trackerfy.API
                     options.Audience = audience;
                 });
 
+            services.AddHttpClient("auth0", c =>
+            {
+                c.BaseAddress = new Uri(domain);
+                c.DefaultRequestHeaders.Add("Authorization", $"Bearer {Configuration["Auth0:MAPI-token"]}");
+            });
+
             services.AddApplication();
             services.AddInfrastructure(Configuration);
 

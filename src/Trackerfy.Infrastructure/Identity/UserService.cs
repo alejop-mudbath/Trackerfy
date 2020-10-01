@@ -1,43 +1,56 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
 using Trackerfy.Application.Interfaces;
+using Trackerfy.Domain.Entities;
 
 namespace Trackerfy.Infrastructure.Identity
 {
     public class UserService : IUserService
     {
-        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly IHttpClientFactory _httpClient;
+        private readonly IConfiguration _configuration;
 
-        public UserService(UserManager<ApplicationUser> userManager)
+        public UserService( IHttpClientFactory httpClient,
+            IConfiguration configuration)
         {
-            _userManager = userManager;
+            _httpClient = httpClient;
+            _configuration = configuration;
         }
 
-        public async Task<string> GetUserNameAsync(string userId)
+        public async Task<List<User>> GetAll()
         {
-            var user = await _userManager.Users.FirstAsync(u => u.Id == userId);
+            var request = new HttpRequestMessage(HttpMethod.Get, "/api/v2/users");
 
-            return user.UserName;
-        }
+            var client = _httpClient.CreateClient("auth0");
 
-        public async Task<string> CreateUserAsync(string name, string email, string password)
-        {
-            var user = new ApplicationUser
+            var httpResponse = await client.SendAsync(request);
+
+            httpResponse.EnsureSuccessStatusCode(); // throws if not 200-299
+
+            var contentStream = await httpResponse.Content.ReadAsStreamAsync();
+
+            using var streamReader = new StreamReader(contentStream);
+            using var jsonReader = new JsonTextReader(streamReader);
+
+            var serializer = new JsonSerializer();
+
+            try
             {
-                UserName = email,
-                Email = email,
-                Name = name
-            };
-
-            var result = await _userManager.CreateAsync(user, password);
-
-            if (!result.Succeeded)
-                throw new Exception(result.Errors.First().Description);
-
-            return user.Id;
+                return serializer.Deserialize<List<User>>(jsonReader);
+            }
+            catch (JsonReaderException ex)
+            {
+                throw new Exception("Get users error", ex);
+            }
         }
     }
 }
