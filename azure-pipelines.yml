@@ -4,7 +4,7 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
 
 trigger:
-- master
+- azure-pipelines-angular
 
 pool:
   vmImage: 'ubuntu-latest'
@@ -22,19 +22,28 @@ steps:
 
 - script: dir
   workingDirectory: 'src/'
-  displayName: List contents of build folder
+  displayName: List contents of build src
 
 
 - script: dir
   workingDirectory: 'src/Trackerfy.web/'
-  displayName: List contents of build folder
+  displayName: List contents of build web
   
 - script: dir
   workingDirectory: 'src/Trackerfy.web/trackerfy/'
-  displayName: List contents of build folder
+  displayName: List contents of build trackerfy
+  continueOnError: true
 
 - script: |
-  workingDirectory: src/Trackerfy.Web/trackerfy/
+    workingDirectory: src/trackerfy/
+    npm install -g @angular/cli
+    npm install
+    ng build --prod
+  displayName: 'npm install and build'
+  continueOnError: true
+
+- script: |
+  workingDirectory: src/Trackerfy.Web/
     npm install -g @angular/cli
     npm install
     ng build --prod
