@@ -3,9 +3,8 @@ import {HttpClient} from "@angular/common/http";
 import {CreateIssueModel} from "./shared/createIssueModel";
 import {IssueInterface} from "./shared/issue.interface";
 import {AuthService} from "../auth/auth.service";
-import {from, Observable, Subject} from "rxjs";
-import {concatMap, map, switchMap, tap} from "rxjs/operators";
-import Auth0Client from "@auth0/auth0-spa-js/dist/typings/Auth0Client";
+import {Observable} from "rxjs";
+import {switchMap} from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +24,15 @@ export class IssuesService {
     );
   }
 
+  getIssuesByState(stateId): Observable<IssueInterface[]> {
+    return this.auth.getTokenSilently.pipe(
+      switchMap(token =>
+        this.http.get<IssueInterface[]>(`${this.authApiURI}/issues/${stateId}`, {
+          headers: {Authorization: `Bearer ${token}`}
+        }))
+    );
+  }
+
   create(createIssue: CreateIssueModel): Observable<Object> {
     return this.http.post(`${this.authApiURI}/issues`, createIssue)
   }
@@ -38,11 +46,7 @@ export class IssuesService {
               Authorization: `Bearer ${token}`
             }
           }).then(result => result.json())
-        // this.http.get<IssueInterface>(`${this.authApiURI}/issues/${issueId}`, {
-        //   headers: {
-        //     "Authorization": `Bearer ${token}`
-        //   }
-        // }))
+
       ));
   }
 }

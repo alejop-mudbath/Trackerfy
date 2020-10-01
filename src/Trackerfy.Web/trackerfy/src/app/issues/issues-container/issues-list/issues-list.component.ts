@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {IssuesService} from "../../issues.service";
 import {IssueInterface} from "../../shared/issue.interface";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-issues-list',
@@ -10,15 +11,24 @@ import {IssueInterface} from "../../shared/issue.interface";
 export class IssuesListComponent implements OnInit {
   issues: IssueInterface[] = [];
 
-  constructor(private issuesServices: IssuesService) {
+  constructor(private issuesServices: IssuesService, private route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
-    this.getAll();
+
+    this.route.params.subscribe(params => {
+      const stateId = params["stateId"];
+      this.getIssues(stateId);
+    });
   }
 
-  async getAll() {
-    this.issuesServices.getAllIssues().subscribe(result => {
+  async getIssues(statetId) {
+    let issues = this.issuesServices.getAllIssues();
+
+    if (statetId)
+      issues = this.issuesServices.getIssuesByState(statetId);
+
+    issues.subscribe(result => {
       this.issues = result;
     });
   }
