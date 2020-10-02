@@ -25,14 +25,6 @@ steps:
   displayName: List contents of build src
 
 
-- script: dir
-  workingDirectory: 'src/Trackerfy.web/'
-  displayName: List contents of build web
-  
-- script: dir
-  workingDirectory: 'src/Trackerfy.web/trackerfy/'
-  displayName: List contents of build trackerfy
-  continueOnError: true
 
 - script: |
     workingDirectory: src/trackerfy/
@@ -40,6 +32,16 @@ steps:
     npm install
     ng build --prod
   displayName: 'npm install and build'
+  continueOnError: true
+
+- script: dir
+  workingDirectory: 'src/Trackerfy.web/'
+  displayName: List contents of build web
+  continueOnError: true
+
+- script: dir
+  workingDirectory: 'src/Trackerfy.web/trackerfy/'
+  displayName: List contents of build trackerfy
   continueOnError: true
 
 - script: |
