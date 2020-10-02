@@ -13,14 +13,15 @@
           <li class="nav-item"><span class="navbar-text"></span></li>
         </ul>
         <ul class="navbar-nav">
-          <li class="nav-item"><span class="navbar-text" >
+          <li class="nav-item"><span class="navbar-text">
             <ng-container *ngIf="auth.isLoggedIn">
               {{name}}&nbsp;&nbsp;
             </ng-container>
           </span></li>
           <ng-container *ngIf="auth.isLoggedIn else loggedOut">
-            <a class="btn btn-primary btb-outline" href="#" (click)="auth.logout()"><i
-              class="fa fa-download  fa-sign-out"></i>&nbsp;Sign out&nbsp;</a>
+            <button class="btn btn-primary btb-outline btn-sm" (click)="auth.logout()">
+              <i class="fa fa-download  fa-sign-out"></i>&nbsp;Sign out&nbsp;
+            </button>
           </ng-container>
           <ng-template #loggedOut>
             <a class="btn btn-primary btb-outline" href="#" (click)="auth.login()"><i
