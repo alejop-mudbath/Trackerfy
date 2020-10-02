@@ -21,7 +21,7 @@ export class TokenInterceptor implements HttpInterceptor {
       switchMap(token => {
         const tokenReq = req.clone({
           url: `${environment.apiUrl}/${req.url}`,
-          setHeaders: {Authorization: `Bearer ${token}`}
+          headers: req.headers.set('Content-Type', 'application/json').set('Authorization', `Bearer ${token}`)
         });
         return next.handle(tokenReq);
       }),
