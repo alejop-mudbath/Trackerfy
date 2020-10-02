@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using Trackerfy.Domain.Entities;
 
 namespace Trackerfy.Application.Issues.Queries.GetAllIssues
 {
@@ -23,5 +25,7 @@ namespace Trackerfy.Application.Issues.Queries.GetAllIssues
         public string LastModifiedBy { get; set; }
 
         public DateTime? LastModified { get; set; }
+        public string LastModifiedByName { get; set; }
+        public string CreatedByName { get; set; }
     }
 }

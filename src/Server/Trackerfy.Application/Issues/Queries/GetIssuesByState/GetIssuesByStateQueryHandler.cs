@@ -16,19 +16,31 @@ namespace Trackerfy.Application.Issues.Queries.GetIssuesByState
     {
         private readonly IContext _context;
         private readonly IMapper _mapper;
+        private readonly IUserService _userService;
 
-        public GetIssuesByStateQueryHandler(IContext context, IMapper mapper)
+        public GetIssuesByStateQueryHandler(IContext context, IMapper mapper,  IUserService userService)
         {
             _context = context;
             _mapper = mapper;
+            _userService = userService;
         }
 
         public async Task<List<IssueDTO>> Handle(GetIssuesByStateQuery request, CancellationToken cancellationToken)
         {
-            return await _context.Set<Issue>()
+            var issues = await _context.Set<Issue>()
                 .Where(i => i.IssueStateId.Equals(request.StateId))
                 .ProjectTo<IssueDTO>(_mapper.ConfigurationProvider)
                 .ToListAsync(cancellationToken);
+
+            var users = await _userService.GetAll();
+            foreach (var issueDto in issues)
+            {
+                if(!string.IsNullOrEmpty(issueDto.LastModifiedBy))
+                    issueDto.LastModifiedByName = users.First(x => x.user_id.Equals(issueDto.LastModifiedBy)).name;
+
+                issueDto.CreatedByName = users.First(x => x.user_id.Equals(issueDto.CreatedBy)).name;
+            }
+            return issues;
         }
     }
 }
