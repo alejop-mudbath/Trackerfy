@@ -13,7 +13,6 @@ import Auth0Client from "@auth0/auth0-spa-js/dist/typings/Auth0Client";
   providedIn: 'root'
 })
 export class AuthService {
-  private authApiURI: string = "http://localhost:5000/api";
 
   auth0Client$ = (from(
     createAuth0Client({
@@ -84,7 +83,7 @@ export class AuthService {
   }
 
   register(userRegistration: any) {
-    return this.http.post(this.authApiURI + '/users/register', userRegistration)
+    return this.http.post(environment.apiUrl + '/users/register', userRegistration)
       .pipe(catchError(handlerError));
 
     function handlerError(error) {

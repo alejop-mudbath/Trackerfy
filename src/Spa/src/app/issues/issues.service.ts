@@ -5,21 +5,21 @@ import {IssueInterface} from "./shared/issue.interface";
 import {AuthService} from "../auth/auth.service";
 import {Observable} from "rxjs";
 import {switchMap} from "rxjs/operators";
-import {IssuesStateStatisticModel} from "./issuesStateStatistic.model";
+import {IssuesStateStatisticModel} from "./shared/issuesStateStatistic.model";
+import {environment} from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class IssuesService {
-  private authApiURI: string = "http://localhost:5000/api";
 
-  constructor(private http: HttpClient, private auth: AuthService) {
+  constructor(private http: HttpClient, private auth: AuthService, ) {
   }
 
   getAllIssues(): Observable<IssueInterface[]> {
     return this.auth.getTokenSilently.pipe(
       switchMap(token =>
-        this.http.get<IssueInterface[]>(`${this.authApiURI}/issues`, {
+        this.http.get<IssueInterface[]>(`${environment.apiUrl}/issues`, {
           headers: {Authorization: `Bearer ${token}`}
         }))
     );
@@ -28,7 +28,7 @@ export class IssuesService {
   getIssuesStatistics(): Observable<IssuesStateStatisticModel[]> {
     return this.auth.getTokenSilently.pipe(
       switchMap(token =>
-        this.http.get<IssueInterface[]>(`${this.authApiURI}/issues/statistics`, {
+        this.http.get<IssuesStateStatisticModel[]>(`${environment.apiUrl}/issues/statistics`, {
           headers: {Authorization: `Bearer ${token}`}
         }))
     );
@@ -37,20 +37,20 @@ export class IssuesService {
   getIssuesByState(stateId): Observable<IssueInterface[]> {
     return this.auth.getTokenSilently.pipe(
       switchMap(token =>
-        this.http.get<IssueInterface[]>(`${this.authApiURI}/issues/state/${stateId}`, {
+        this.http.get<IssueInterface[]>(`${environment.apiUrl}/issues/state/${stateId}`, {
           headers: {Authorization: `Bearer ${token}`}
         }))
     );
   }
 
-  create(createIssue: CreateIssueModel): Observable<Object> {
-    return this.http.post(`${this.authApiURI}/issues`, createIssue)
+  create(createIssue: CreateIssueModel){
+    return this.http.post(`${environment.apiUrl}/issues`, createIssue);
   }
 
   getIssueById(issueId: number): Observable<IssueInterface> {
     return this.auth.getTokenSilently.pipe(
       switchMap(token =>
-          fetch(`${this.authApiURI}/issues/${issueId}`, {
+          fetch(`${environment.apiUrl}/issues/${issueId}`, {
             method: 'GET',
             headers: {
               Authorization: `Bearer ${token}`
