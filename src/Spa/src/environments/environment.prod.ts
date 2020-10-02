@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  apiUrl: 'http://localhost:5000/api',
+  apiUrl: 'https://trackerfy-api.azurewebsites.net/api',
   auth: {
     domain: 'trackerfy.us.auth0.com',
     clientId: 'PJhl8w04c6MrpWfmwOifNzkYPDi9EarR',
