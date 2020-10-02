@@ -14,7 +14,6 @@ export class IssuesListComponent implements OnInit {
   constructor(private issuesServices: IssuesService, private route: ActivatedRoute) {
     this.route.params.subscribe(params => {
       const stateId = params["stateId"];
-      console.log(stateId)
       this.getIssues(stateId);
     });
   }

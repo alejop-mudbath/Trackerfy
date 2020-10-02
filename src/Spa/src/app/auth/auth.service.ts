@@ -1,11 +1,11 @@
-import {HttpClient} from "@angular/common/http";
-import {catchError, concatMap, shareReplay, tap} from "rxjs/operators";
-import {BehaviorSubject, combineLatest, from, Observable, of, throwError} from "rxjs";
-import {Injectable} from "@angular/core";
-import {environment} from "../../environments/environment";
-import {Router} from "@angular/router";
-import createAuth0Client from "@auth0/auth0-spa-js";
-import Auth0Client from "@auth0/auth0-spa-js/dist/typings/Auth0Client";
+import {HttpClient} from '@angular/common/http';
+import {catchError, concatMap, shareReplay, tap} from 'rxjs/operators';
+import {BehaviorSubject, combineLatest, from, Observable, of, throwError} from 'rxjs';
+import {Injectable} from '@angular/core';
+import {environment} from '../../environments/environment';
+import {Router} from '@angular/router';
+import createAuth0Client from '@auth0/auth0-spa-js';
+import Auth0Client from '@auth0/auth0-spa-js/dist/typings/Auth0Client';
 
 (window as any).global = window;
 
@@ -18,7 +18,7 @@ export class AuthService {
     createAuth0Client({
       domain: environment.auth.domain,
       client_id: environment.auth.clientId,
-      redirect_uri: environment.auth.redirect,// `${window.location.origin}`
+      redirect_uri: environment.auth.redirect, // `${window.location.origin}`
       audience: environment.auth.audience,
     })
   ) as Observable<Auth0Client>).pipe(
@@ -82,15 +82,6 @@ export class AuthService {
     });
   }
 
-  register(userRegistration: any) {
-    return this.http.post(environment.apiUrl + '/users/register', userRegistration)
-      .pipe(catchError(handlerError));
-
-    function handlerError(error) {
-      return throwError(error.error.error);
-    }
-  }
-
   get isLoggedIn(): boolean {
     // Check if current date is before token
     // expiration and user is signed in locally
@@ -113,7 +104,6 @@ export class AuthService {
           // NOTE: you could pass options here if needed
           return this.getUser$();
         }
-        console.log("loggedIn" + loggedIn );
         // If not authenticated, return stream that emits 'false'
         return of(loggedIn);
       })

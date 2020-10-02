@@ -2,6 +2,8 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {AuthCallbackComponent} from "./auth-callback/auth-callback.component";
 import {AuthService} from "./auth.service";
+import {HTTP_INTERCEPTORS} from '@angular/common/http';
+import {TokenInterceptor} from './token.interceptor';
 
 
 @NgModule({
@@ -9,7 +11,11 @@ import {AuthService} from "./auth.service";
   imports: [
     CommonModule
   ],
-  providers: [AuthService]
+  providers: [AuthService, {
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptor,
+    multi: true
+  }]
 })
 export class AuthModule {
 }
