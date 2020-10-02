@@ -8,7 +8,12 @@ variables:
     value: 'src/Spa'
 
 trigger:
-- master
+  branches:
+    include:
+      - master
+  paths:
+    exclude:
+      - 'src/Server/*'
 
 pool:
   vmImage: 'ubuntu-latest'
@@ -36,7 +41,7 @@ steps:
 - task: ArchiveFiles@2
   displayName: 'Archive Files'
   inputs:
-    rootFolderOrFile: '$(Build.ArtifactStagingDirectory)'
+    rootFolderOrFile: '$(Build.ArtifactStagingDirectory)/trackerfy'
 
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Artifact: staticwebsite'
