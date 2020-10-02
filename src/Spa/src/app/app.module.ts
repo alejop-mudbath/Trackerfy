@@ -12,6 +12,7 @@ import {ToastrModule} from "ngx-toastr";
 import {MomentModule} from "ngx-moment";
 import { HomeComponent } from './pages/home/home.component';
 import {AuthModule} from "./auth/auth.module";
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import {AuthModule} from "./auth/auth.module";
       positionClass: 'toast-top-right'
     }),
     MomentModule,
-    AuthModule
+    AuthModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

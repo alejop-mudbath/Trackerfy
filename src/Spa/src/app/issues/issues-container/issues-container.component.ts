@@ -11,12 +11,18 @@ export class IssuesContainerComponent implements OnInit {
   issueStatistics: IssuesStateStatisticModel[] = [];
 
   constructor(private issuesService: IssuesService) {
+    this.issuesService.issues.subscribe(() => {
+      this.getStatistics();
+    });
   }
 
   ngOnInit(): void {
-    this.issuesService.getIssuesStatistics().subscribe(
-      result => this.issueStatistics = result
-    )
+    this.getStatistics();
   }
 
+  private getStatistics() {
+    this.issuesService.getIssuesStatistics().subscribe(
+      result => this.issueStatistics = result
+    );
+  }
 }
