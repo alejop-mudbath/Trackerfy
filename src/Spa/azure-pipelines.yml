@@ -42,6 +42,7 @@ steps:
   displayName: 'Archive Files'
   inputs:
     rootFolderOrFile: '$(Build.ArtifactStagingDirectory)/trackerfy'
+    includeRootFolder: false
 
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Artifact: staticwebsite'
